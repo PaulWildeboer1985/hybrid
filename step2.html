@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stap 1: Voorbereiding</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Van on-premise naar Azure Cloud</h1>
+        <h2>Migratiehandleiding Hans Jongerius</h2>
+    </header>
+        <nav>
+            <div class="nav-container">
+                <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+                <ul id="menu" class="nav-menu">
+                    <li onclick="location.href='index.html'">Home</li>
+                    <li onclick="location.href='step1.html'">Stap 1: Voorbereiding</li>
+                    <li onclick="location.href='step2.html'">Stap 2: Hybride Omgeving</li>
+                    <li onclick="location.href='step3.html'">Stap 3: Volledige Migratie</li>
+                    <li onclick="location.href='step4.html'">Stap 4: Printerbeheer</li>
+                    <li onclick="location.href='step5.html'">Stap 5: Nazorg</li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <section>
+                <h2>Stap 2: Overstappen naar een Hybride Omgeving</h2>
+    <p>Doel: Synchroniseer gebruikersaccounts van on-premises Active Directory naar Azure AD.</p>
+    <p>Acties:</p>
+    <ul>
+        <li>Download en installeer Azure AD Connect op een on-premises server.</li>
+        <li>Configureer synchronisatie van gebruikersaccounts en wachtwoorden.</li>
+        <li>Test synchronisatie en toegang tot Microsoft 365-services.</li>
+    </ul>
+    <h4>Bronnen:</h4>
+    <button onclick="window.open('https://learn.microsoft.com/en-us/azure/active-directory/hybrid/how-to-connect-install-custom', '_blank')">
+        Azure AD Connect installatiehandleiding
+    </button>
+    <h3>2.2 Configureer hybride bestandstoegang</h3>
+    <p>Doel: Zorg dat gebruikers toegang hebben tot bestanden tijdens de overgang.</p>
+    <p>Acties:</p>
+    <ul>
+        <li>Zet SharePoint en OneDrive in voor cloudbestandsbeheer.</li>
+        <li>Migreer gedeelde bestanden naar SharePoint-sites en configureer toegang.</li>
+        <li>Gebruik OneDrive Known Folder Move voor persoonlijke bestanden.</li>
+    </ul>
+    <h4>Bronnen:</h4>
+    <button onclick="window.open('https://learn.microsoft.com/en-us/sharepointmigration/', '_blank')">
+        SharePoint-bestandsmigratie
+    </button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Migratiehandleiding Hans Jongerius</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+
+    // Navigatiemenu toggle
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+        const menu = document.querySelector('.nav-menu');
+        menu.classList.toggle('active');
+    });
+    </script>
+</body>
+</html>

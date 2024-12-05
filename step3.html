@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stap 3: Volledige Migratie</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    </head>
+</head>
+<body>
+    <header>
+        <h1>Van on-premise naar Azure Cloud</h1>
+        <h2>Migratiehandleiding Hans Jongerius</h2>
+    </header>
+    <nav>
+        <div class="nav-container">
+            <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <ul id="menu" class="nav-menu">
+                <li onclick="location.href='index.html'">Home</li>
+                <li onclick="location.href='step1.html'">Stap 1: Voorbereiding</li>
+                <li onclick="location.href='step2.html'">Stap 2: Hybride Omgeving</li>
+                <li onclick="location.href='step3.html'">Stap 3: Volledige Migratie</li>
+                <li onclick="location.href='step4.html'">Stap 4: Printerbeheer</li>
+                <li onclick="location.href='step5.html'">Stap 5: Nazorg</li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section>
+            <h2>Stap 3: Overstap naar Volledig Cloudgebaseerde Microsoft 365-omgeving</h2>
+    <h3>3.1 Migreer gebruikers naar Azure AD</h3>
+    <p>Doel: Elimineer on-premises Active Directory.</p>
+    <p>Acties:</p>
+    <ul>
+        <li>Controleer of alle gebruikers en apparaten correct gesynchroniseerd zijn met Azure AD.</li>
+        <li>Zet nieuwe apparaten direct op via Autopilot en Microsoft Endpoint Manager.</li>
+        <li>Verwijder afhankelijkheden van de on-premises AD.</li>
+    </ul>
+    <h4>Bronnen:</h4>
+    <button onclick="window.open('https://learn.microsoft.com/en-us/azure/active-directory/hybrid/plan-connect', '_blank')">
+        Azure AD migratiehandleiding
+    </button>
+    <h3>3.2 Beheer apparaten via Intune</h3>
+    <p>Doel: Volledig beheer van alle gebruikersapparaten via de cloud.</p>
+    <p>Acties:</p>
+    <ul>
+        <li>Stel beveiligingsbeleid en apparaatconfiguraties in via Microsoft Endpoint Manager.</li>
+        <li>Configureer compliancebeleid voor Windows-apparaten.</li>
+        <li>Distribueer applicaties, zoals Office 365 en de nieuwe RDP-hosted applicaties.</li>
+    </ul>
+    <h4>Bronnen:</h4>
+    <button onclick="window.open('https://learn.microsoft.com/en-us/mem/', '_blank')">
+        Microsoft Endpoint Manager documentatie
+    </button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Migratiehandleiding Hans Jongerius</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Navigatiemenu toggle
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            const menu = document.querySelector('.nav-menu');
+            menu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
