@@ -63,14 +63,51 @@
             once: true
         });
 
-        // Configuratie voor de Licenties grafiek
-        const licensesCtx = document.getElementById('licensesChart').getContext('2d');
-        new Chart(licensesCtx, {
+        // Tooltip uitleg per grafiek
+        const tooltipExplainers = {
+            'licenses': {
+                'Citrix': 'Citrix-licenties zijn duurder vanwege de complexe infrastructuur en serververeisten.',
+                'Microsoft 365': 'Microsoft 365-licenties besparen kosten door schaalbaarheid en een pay-per-user model.'
+            },
+            'hardware': {
+                'Citrix': 'Citrix vereist meerdere fysieke servers en randapparatuur, wat de kosten verhoogt.',
+                'Microsoft 365': 'Microsoft 365 maakt hardware bijna overbodig door alles in de cloud te hosten.'
+            },
+            'maintenance': {
+                'Citrix': 'Citrix vereist regelmatig onderhoud voor zowel hardware als software.',
+                'Microsoft 365': 'Onderhoudskosten zijn minimaal dankzij geautomatiseerde updates in de cloud.'
+            },
+            'support': {
+                'Citrix': 'Gebruikerssupport is intensiever door de complexiteit van Citrix-configuraties.',
+                'Microsoft 365': 'Microsoft 365 biedt ingebouwde ondersteuning en gebruiksvriendelijke interfaces.'
+            },
+            'total': {
+                'Citrix': 'De totale kosten voor Citrix zijn hoog vanwege infrastructuur, licenties, en onderhoud.',
+                'Microsoft 365': 'Microsoft 365 verlaagt de totale kosten door gestroomlijnde cloudoplossingen.'
+            }
+        };
+
+        // Functie om tooltips dynamisch te configureren
+        function createTooltipCallbacks(chartType) {
+            return {
+                callbacks: {
+                    label: function(context) {
+                        const datasetLabel = context.dataset.label;
+                        const value = context.raw.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' });
+                        const explanation = tooltipExplainers[chartType][datasetLabel];
+                        return `${datasetLabel}: ${value}\n${explanation}`;
+                    }
+                }
+            };
+        }
+
+        // Configuratie voor Licenties
+        new Chart(document.getElementById('licensesChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['Citrix', 'Microsoft 365'],
                 datasets: [{
-                    label: 'Licenties (€)',
+                    label: 'Licenties',
                     data: [12000, 9000],
                     backgroundColor: ['#ff6b6b', '#4caf50']
                 }]
@@ -78,32 +115,22 @@
             options: {
                 responsive: true,
                 plugins: {
+                    tooltip: createTooltipCallbacks('licenses'),
                     title: {
                         display: true,
                         text: 'Licentiekosten'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const explanation = context.raw === 12000
-                                    ? 'Citrix-licenties zijn duurder vanwege complexe infrastructuur.'
-                                    : 'Microsoft 365-licenties besparen kosten door gestroomlijnde cloud-opties.';
-                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
-                            }
-                        }
                     }
                 }
             }
         });
 
-        // Configuratie voor de Hardware grafiek
-        const hardwareCtx = document.getElementById('hardwareChart').getContext('2d');
-        new Chart(hardwareCtx, {
+        // Configuratie voor Hardware
+        new Chart(document.getElementById('hardwareChart').getContext('2d'), {
             type: 'doughnut',
             data: {
                 labels: ['Citrix', 'Microsoft 365'],
                 datasets: [{
-                    label: 'Hardware (€)',
+                    label: 'Hardware',
                     data: [5000, 2000],
                     backgroundColor: ['#ff6b6b', '#4caf50']
                 }]
@@ -111,68 +138,48 @@
             options: {
                 responsive: true,
                 plugins: {
+                    tooltip: createTooltipCallbacks('hardware'),
                     title: {
                         display: true,
                         text: 'Hardwarekosten'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const explanation = context.raw === 5000
-                                    ? 'Citrix vereist meer fysieke servers, wat hogere hardwarekosten veroorzaakt.'
-                                    : 'Microsoft 365 verlaagt hardwarekosten door cloudgebruik.';
-                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
-                            }
-                        }
                     }
                 }
             }
         });
 
-        // Configuratie voor de Onderhoud grafiek
-        const maintenanceCtx = document.getElementById('maintenanceChart').getContext('2d');
-        new Chart(maintenanceCtx, {
+        // Configuratie voor Onderhoud
+        new Chart(document.getElementById('maintenanceChart').getContext('2d'), {
             type: 'line',
             data: {
                 labels: ['Citrix', 'Microsoft 365'],
                 datasets: [{
-                    label: 'Onderhoud (€)',
+                    label: 'Onderhoud',
                     data: [2000, 1000],
                     borderColor: '#4caf50',
                     backgroundColor: 'rgba(76, 175, 80, 0.2)',
-                    fill: true,
-                    tension: 0.4
+                    tension: 0.4,
+                    fill: true
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
+                    tooltip: createTooltipCallbacks('maintenance'),
                     title: {
                         display: true,
                         text: 'Onderhoudskosten'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const explanation = context.raw === 2000
-                                    ? 'Citrix vereist meer onderhoud voor on-premises infrastructuur.'
-                                    : 'Microsoft 365 reduceert onderhoud door cloudbeheer.';
-                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
-                            }
-                        }
                     }
                 }
             }
         });
 
-        // Configuratie voor de Gebruikerssupport grafiek
-        const supportCtx = document.getElementById('supportChart').getContext('2d');
-        new Chart(supportCtx, {
+        // Configuratie voor Gebruikerssupport
+        new Chart(document.getElementById('supportChart').getContext('2d'), {
             type: 'radar',
             data: {
                 labels: ['Citrix', 'Microsoft 365'],
                 datasets: [{
-                    label: 'Gebruikerssupport (€)',
+                    label: 'Gebruikerssupport',
                     data: [3000, 1500],
                     backgroundColor: 'rgba(76, 175, 80, 0.2)',
                     borderColor: '#4caf50'
@@ -181,32 +188,22 @@
             options: {
                 responsive: true,
                 plugins: {
+                    tooltip: createTooltipCallbacks('support'),
                     title: {
                         display: true,
                         text: 'Gebruikerssupportkosten'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const explanation = context.raw === 3000
-                                    ? 'Citrix vereist meer support vanwege complexe configuraties.'
-                                    : 'Microsoft 365 biedt geïntegreerde ondersteuning en eenvoud.';
-                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
-                            }
-                        }
                     }
                 }
             }
         });
 
-        // Configuratie voor de Totale kosten grafiek
-        const totalCtx = document.getElementById('totalChart').getContext('2d');
-        new Chart(totalCtx, {
+        // Configuratie voor Totale Kosten
+        new Chart(document.getElementById('totalChart').getContext('2d'), {
             type: 'polarArea',
             data: {
                 labels: ['Citrix', 'Microsoft 365'],
                 datasets: [{
-                    label: 'Totale Kosten (€)',
+                    label: 'Totale Kosten',
                     data: [22000, 13500],
                     backgroundColor: ['#ff6b6b', '#4caf50']
                 }]
@@ -214,19 +211,10 @@
             options: {
                 responsive: true,
                 plugins: {
+                    tooltip: createTooltipCallbacks('total'),
                     title: {
                         display: true,
                         text: 'Totale Kosten'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const explanation = context.raw === 22000
-                                    ? 'De totale kosten van Citrix zijn hoger door on-premises eisen.'
-                                    : 'Microsoft 365 verlaagt de totale kosten door cloudoptimalisatie.';
-                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
-                            }
-                        }
                     }
                 }
             }
