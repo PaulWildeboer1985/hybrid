@@ -28,9 +28,28 @@
     </nav>
     <main>
         <section>
-            <h3>Kostenvergelijking: Citrix versus Microsoft 365</h3>
-            <canvas id="costComparisonChart"></canvas>
-            <p>De grafiek geeft een uitgebreid overzicht van de jaarlijkse kosten voor Citrix en Microsoft 365, verdeeld over meerdere categorieën.</p>
+            <h3>Kostenvergelijking: Licenties</h3>
+            <canvas id="licensesChart"></canvas>
+        </section>
+
+        <section>
+            <h3>Kostenvergelijking: Hardware</h3>
+            <canvas id="hardwareChart"></canvas>
+        </section>
+
+        <section>
+            <h3>Kostenvergelijking: Onderhoud</h3>
+            <canvas id="maintenanceChart"></canvas>
+        </section>
+
+        <section>
+            <h3>Kostenvergelijking: Gebruikerssupport</h3>
+            <canvas id="supportChart"></canvas>
+        </section>
+
+        <section>
+            <h3>Totaal: Citrix versus Microsoft 365</h3>
+            <canvas id="totalChart"></canvas>
         </section>
     </main>
     <footer>
@@ -44,69 +63,123 @@
             once: true
         });
 
-        // Uitgebreide grafiekconfiguratie
-        const ctx = document.getElementById('costComparisonChart').getContext('2d');
-        const costComparisonChart = new Chart(ctx, {
+        // Configuratie voor de Licenties grafiek
+        const licensesCtx = document.getElementById('licensesChart').getContext('2d');
+        new Chart(licensesCtx, {
             type: 'bar',
             data: {
-                labels: ['Licenties', 'Hardware', 'Onderhoud', 'Gebruikerssupport', 'Totaal'],
-                datasets: [
-                    {
-                        label: 'Citrix (Huidige situatie)',
-                        data: [12000, 5000, 2000, 3000, 22000],
-                        backgroundColor: '#ff6b6b',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Microsoft 365 (Nieuwe situatie)',
-                        data: [9000, 2000, 1000, 1500, 13500],
-                        backgroundColor: '#4caf50',
-                        borderWidth: 1
-                    }
-                ]
+                labels: ['Citrix', 'Microsoft 365'],
+                datasets: [{
+                    label: 'Licenties (€)',
+                    data: [12000, 9000],
+                    backgroundColor: ['#ff6b6b', '#4caf50']
+                }]
             },
             options: {
                 responsive: true,
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Kostenvergelijking: Citrix versus Microsoft 365'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (tooltipItem) {
-                                return `€ ${tooltipItem.raw.toLocaleString()}`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Kostenonderdelen'
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Jaarlijkse Kosten (€)'
-                        },
-                        ticks: {
-                            callback: function (value) {
-                                return `€ ${value}`;
-                            }
-                        }
+                        text: 'Licentiekosten'
                     }
                 }
             }
         });
 
-        // Navigatiemenu toggle
-        document.querySelector('.nav-toggle').addEventListener('click', () => {
-            const menu = document.querySelector('.nav-menu');
-            menu.classList.toggle('active');
+        // Configuratie voor de Hardware grafiek
+        const hardwareCtx = document.getElementById('hardwareChart').getContext('2d');
+        new Chart(hardwareCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Citrix', 'Microsoft 365'],
+                datasets: [{
+                    label: 'Hardware (€)',
+                    data: [5000, 2000],
+                    backgroundColor: ['#ff6b6b', '#4caf50']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Hardwarekosten'
+                    }
+                }
+            }
+        });
+
+        // Configuratie voor de Onderhoud grafiek
+        const maintenanceCtx = document.getElementById('maintenanceChart').getContext('2d');
+        new Chart(maintenanceCtx, {
+            type: 'line',
+            data: {
+                labels: ['Citrix', 'Microsoft 365'],
+                datasets: [{
+                    label: 'Onderhoud (€)',
+                    data: [2000, 1000],
+                    borderColor: '#4caf50',
+                    backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Onderhoudskosten'
+                    }
+                }
+            }
+        });
+
+        // Configuratie voor de Gebruikerssupport grafiek
+        const supportCtx = document.getElementById('supportChart').getContext('2d');
+        new Chart(supportCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Citrix', 'Microsoft 365'],
+                datasets: [{
+                    label: 'Gebruikerssupport (€)',
+                    data: [3000, 1500],
+                    backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                    borderColor: '#4caf50'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Gebruikerssupportkosten'
+                    }
+                }
+            }
+        });
+
+        // Configuratie voor de Totale kosten grafiek
+        const totalCtx = document.getElementById('totalChart').getContext('2d');
+        new Chart(totalCtx, {
+            type: 'polarArea',
+            data: {
+                labels: ['Citrix', 'Microsoft 365'],
+                datasets: [{
+                    label: 'Totale Kosten (€)',
+                    data: [22000, 13500],
+                    backgroundColor: ['#ff6b6b', '#4caf50']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Totale Kosten'
+                    }
+                }
+            }
         });
     </script>
 </body>
