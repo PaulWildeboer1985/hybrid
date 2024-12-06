@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van on-premise naar Azure Cloud</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Van on-premise naar Azure Cloud</h1>
+        <h2>Migratiehandleiding Hans Jongerius</h2>
+    </header>
+    <main>
+        <!-- Licenties -->
+        <section class="chart-section">
+            <h3>Licentiekosten</h3>
+            <canvas id="licensesChart"></canvas>
+            <div class="chart-summary" style="background-color: #ff6b6b;">
+                <p><strong>Citrix:</strong> Licentiekosten zijn €12.000 per jaar vanwege complexe infrastructuur.</p>
+            </div>
+            <div class="chart-summary" style="background-color: #4caf50;">
+                <p><strong>Microsoft 365:</strong> Licenties besparen kosten met een schaalbaar pay-per-user model (€9.000).</p>
+            </div>
+        </section>
+
+        <!-- Hardware -->
+        <section class="chart-section">
+            <h3>Hardwarekosten</h3>
+            <canvas id="hardwareChart"></canvas>
+            <div class="chart-summary" style="background-color: #ff6b6b;">
+                <p><strong>Citrix:</strong> Hardware vereist €5.000 per jaar door fysieke servers.</p>
+            </div>
+            <div class="chart-summary" style="background-color: #4caf50;">
+                <p><strong>Microsoft 365:</strong> Cloudhosting verlaagt hardwarekosten tot €2.000 per jaar.</p>
+            </div>
+        </section>
+
+        <!-- Onderhoud -->
+        <section class="chart-section">
+            <h3>Onderhoudskosten</h3>
+            <canvas id="maintenanceChart"></canvas>
+            <div class="chart-summary" style="background-color: #ff6b6b;">
+                <p><strong>Citrix:</strong> Regelmatig onderhoud kost €2.000 per jaar.</p>
+            </div>
+            <div class="chart-summary" style="background-color: #4caf50;">
+                <p><strong>Microsoft 365:</strong> Geautomatiseerde updates minimaliseren onderhoudskosten tot €1.000.</p>
+            </div>
+        </section>
+
+        <!-- Gebruikerssupport -->
+        <section class="chart-section">
+            <h3>Gebruikerssupportkosten</h3>
+            <canvas id="supportChart"></canvas>
+            <div class="chart-summary" style="background-color: #ff6b6b;">
+                <p><strong>Citrix:</strong> Supportkosten bedragen €3.000 per jaar door complexiteit.</p>
+            </div>
+            <div class="chart-summary" style="background-color: #4caf50;">
+                <p><strong>Microsoft 365:</strong> Gebruiksvriendelijke ondersteuning verlaagt kosten tot €1.500.</p>
+            </div>
+        </section>
+
+        <!-- Totale Kosten -->
+        <section class="chart-section">
+            <h3>Totale Kosten</h3>
+            <canvas id="totalChart"></canvas>
+            <div class="chart-summary" style="background-color: #ff6b6b;">
+                <p><strong>Citrix:</strong> Totale jaarlijkse kosten bedragen €22.000.</p>
+            </div>
+            <div class="chart-summary" style="background-color: #4caf50;">
+                <p><strong>Microsoft 365:</strong> Totale jaarlijkse kosten bedragen €13.500.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Migratiehandleiding Hans Jongerius</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
