@@ -1,3 +1,4 @@
+// Tooltip uitleg per grafiek
 const tooltipExplainers = {
     licenses: {
         Citrix: 'Citrix-licenties zijn duurder vanwege de complexe infrastructuur en serververeisten.',
@@ -21,6 +22,7 @@ const tooltipExplainers = {
     }
 };
 
+// Functie om tooltips dynamisch te configureren
 function createTooltipCallbacks(chartType) {
     return {
         callbacks: {
@@ -41,7 +43,7 @@ new Chart(document.getElementById('licensesChart').getContext('2d'), {
         labels: ['Citrix', 'Microsoft 365'],
         datasets: [{
             label: 'Licenties',
-            data: [12000, 9000],
+            data: [12000, 9000], // Vul data in
             backgroundColor: ['#ff6b6b', '#4caf50']
         }]
     },
@@ -49,9 +51,124 @@ new Chart(document.getElementById('licensesChart').getContext('2d'), {
         responsive: true,
         plugins: {
             tooltip: createTooltipCallbacks('licenses'),
-            title: { display: true, text: 'Licentiekosten' }
+            title: {
+                display: true,
+                text: 'Licentiekosten'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Kosten (€)'
+                }
+            }
         }
     }
 });
 
-// Herhaal voor alle andere grafieken (hardware, maintenance, support, total).
+// Hardware grafiek
+new Chart(document.getElementById('hardwareChart').getContext('2d'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Citrix', 'Microsoft 365'],
+        datasets: [{
+            label: 'Hardware',
+            data: [5000, 2000], // Vul data in
+            backgroundColor: ['#ff6b6b', '#4caf50']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            tooltip: createTooltipCallbacks('hardware'),
+            title: {
+                display: true,
+                text: 'Hardwarekosten'
+            }
+        }
+    }
+});
+
+// Onderhoud grafiek
+new Chart(document.getElementById('maintenanceChart').getContext('2d'), {
+    type: 'line',
+    data: {
+        labels: ['Citrix', 'Microsoft 365'],
+        datasets: [{
+            label: 'Onderhoud',
+            data: [2000, 1000], // Vul data in
+            borderColor: '#4caf50',
+            backgroundColor: 'rgba(76, 175, 80, 0.2)',
+            tension: 0.4,
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            tooltip: createTooltipCallbacks('maintenance'),
+            title: {
+                display: true,
+                text: 'Onderhoudskosten'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Kosten (€)'
+                }
+            }
+        }
+    }
+});
+
+// Gebruikerssupport grafiek
+new Chart(document.getElementById('supportChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+        labels: ['Citrix', 'Microsoft 365'],
+        datasets: [{
+            label: 'Gebruikerssupport',
+            data: [3000, 1500], // Vul data in
+            backgroundColor: 'rgba(76, 175, 80, 0.2)',
+            borderColor: '#4caf50'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            tooltip: createTooltipCallbacks('support'),
+            title: {
+                display: true,
+                text: 'Gebruikerssupportkosten'
+            }
+        }
+    }
+});
+
+// Totale kosten grafiek
+new Chart(document.getElementById('totalChart').getContext('2d'), {
+    type: 'polarArea',
+    data: {
+        labels: ['Citrix', 'Microsoft 365'],
+        datasets: [{
+            label: 'Totale Kosten',
+            data: [22000, 13500], // Vul data in
+            backgroundColor: ['#ff6b6b', '#4caf50']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            tooltip: createTooltipCallbacks('total'),
+            title: {
+                display: true,
+                text: 'Totale Kosten'
+            }
+        }
+    }
+});
