@@ -81,6 +81,16 @@
                     title: {
                         display: true,
                         text: 'Licentiekosten'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const explanation = context.raw === 12000
+                                    ? 'Citrix-licenties zijn duurder vanwege complexe infrastructuur.'
+                                    : 'Microsoft 365-licenties besparen kosten door gestroomlijnde cloud-opties.';
+                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
+                            }
+                        }
                     }
                 }
             }
@@ -104,6 +114,16 @@
                     title: {
                         display: true,
                         text: 'Hardwarekosten'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const explanation = context.raw === 5000
+                                    ? 'Citrix vereist meer fysieke servers, wat hogere hardwarekosten veroorzaakt.'
+                                    : 'Microsoft 365 verlaagt hardwarekosten door cloudgebruik.';
+                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
+                            }
+                        }
                     }
                 }
             }
@@ -130,6 +150,16 @@
                     title: {
                         display: true,
                         text: 'Onderhoudskosten'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const explanation = context.raw === 2000
+                                    ? 'Citrix vereist meer onderhoud voor on-premises infrastructuur.'
+                                    : 'Microsoft 365 reduceert onderhoud door cloudbeheer.';
+                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
+                            }
+                        }
                     }
                 }
             }
@@ -154,6 +184,16 @@
                     title: {
                         display: true,
                         text: 'Gebruikerssupportkosten'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const explanation = context.raw === 3000
+                                    ? 'Citrix vereist meer support vanwege complexe configuraties.'
+                                    : 'Microsoft 365 biedt geïntegreerde ondersteuning en eenvoud.';
+                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
+                            }
+                        }
                     }
                 }
             }
@@ -177,6 +217,16 @@
                     title: {
                         display: true,
                         text: 'Totale Kosten'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const explanation = context.raw === 22000
+                                    ? 'De totale kosten van Citrix zijn hoger door on-premises eisen.'
+                                    : 'Microsoft 365 verlaagt de totale kosten door cloudoptimalisatie.';
+                                return `€ ${context.raw.toLocaleString()} - ${explanation}`;
+                            }
+                        }
                     }
                 }
             }
