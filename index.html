@@ -28,14 +28,9 @@
     </nav>
     <main>
         <section>
-            <h3>Overzicht van IT-partijen</h3>
-            <p>Onze huidige infrastructuur wordt beheerd door een combinatie van servers bij een IT-leverancier en een Citrix-platform. De overstap naar een volledig Azure-cloudomgeving is mogelijk door een nieuw DMS dat RDP-applicaties ondersteunt.</p>
-        </section>
-
-        <section>
-            <h3>Kostenvergelijking</h3>
-            <canvas id="costChart"></canvas>
-            <p>De grafiek toont een duidelijke jaarlijkse kostenbesparing bij het overstappen naar Microsoft 365.</p>
+            <h3>Kostenvergelijking: Citrix versus Microsoft 365</h3>
+            <canvas id="costComparisonChart"></canvas>
+            <p>De grafiek geeft een uitgebreid overzicht van de jaarlijkse kosten voor Citrix en Microsoft 365, verdeeld over meerdere categorieën.</p>
         </section>
     </main>
     <footer>
@@ -49,29 +44,60 @@
             once: true
         });
 
-        // Grafiek configureren
-        const ctx = document.getElementById('costChart').getContext('2d');
-        const costChart = new Chart(ctx, {
+        // Uitgebreide grafiekconfiguratie
+        const ctx = document.getElementById('costComparisonChart').getContext('2d');
+        const costComparisonChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Huidige Kosten', 'Kosten met Microsoft 365'],
-                datasets: [{
-                    label: 'Jaarlijkse Kosten (€)',
-                    data: [20267, 12360],
-                    backgroundColor: ['#ff6b6b', '#4caf50']
-                }]
+                labels: ['Licenties', 'Hardware', 'Onderhoud', 'Gebruikerssupport', 'Totaal'],
+                datasets: [
+                    {
+                        label: 'Citrix (Huidige situatie)',
+                        data: [12000, 5000, 2000, 3000, 22000],
+                        backgroundColor: '#ff6b6b',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Microsoft 365 (Nieuwe situatie)',
+                        data: [9000, 2000, 1000, 1500, 13500],
+                        backgroundColor: '#4caf50',
+                        borderWidth: 1
+                    }
+                ]
             },
             options: {
+                responsive: true,
                 plugins: {
-                    legend: { display: false }
+                    title: {
+                        display: true,
+                        text: 'Kostenvergelijking: Citrix versus Microsoft 365'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return `€ ${tooltipItem.raw.toLocaleString()}`;
+                            }
+                        }
+                    }
                 },
                 scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Kostenonderdelen'
+                        }
+                    },
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: 'Kosten (€)' }
-                    },
-                    x: {
-                        title: { display: true, text: 'Scenario' }
+                        title: {
+                            display: true,
+                            text: 'Jaarlijkse Kosten (€)'
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                return `€ ${value}`;
+                            }
+                        }
                     }
                 }
             }
